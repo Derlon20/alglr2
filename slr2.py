@@ -1,15 +1,15 @@
 from PIL import Image, ImageDraw
-import re
 
-pole = Image.new('RGB', (540, 960), (0,0,0))
+pole = Image.new('RGB', (540, 960), (255,255,220))
 draw = ImageDraw.Draw(pole)
 
 strfilesplit = []
-file = open('DS6.txt', "r")
+file = open('DS6.txt')
 strfile = file.readlines()
 
 for i in range(len(strfile)):
-  strfilesplit.append(re.findall(r'\d+', strfile[i]))
-  draw.point((int(strfilesplit[i][0]), int(strfilesplit[i][1])), fill="white")
+  line = strfile[i]
+  dot = line.split(" ")
+  draw.point((int(dot[0]), int(dot[1])), fill=(0,155,75))
 
-pole.show()
+pole.save('picture.png', 'PNG')
